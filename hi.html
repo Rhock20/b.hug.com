@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Website</title>
+    <link rel="stylesheet" href="fontawesome-free-6.7.2-web/fontawesome-free-6.7.2-web/css/all.css">
+    <link rel="icon" type="image/x-icon"sizes="45x45" href="Screenshot__1_-removebg-preview.png">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    height: 98%;
+    
+}
+
+.navbar, .chat-list, .posts {
+    padding: 20px;
+}
+
+.navbar {
+    width: 5%;
+    background: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.navbar  a.icons {
+    color: white;
+    text-decoration: none;
+   
+}
+
+.chat-list {
+    width: 30%;
+    background: #dddddd1f;
+    max-width: 200px;
+     box-shadow: 0 0 1px rgba(0,0,0,0.2);
+     padding: 1px;
+}
+.chat-list .input-box input{
+    width: 80%;
+    height: 35px;
+    border-radius: 30px;
+    border: #333 1px solid;
+    background: transparent;
+}
+.posts {
+    width: 50%;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+.post {
+    background: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+.navbar .icons .fa,.input-box .fa-search{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin: 5px;
+}
+.input-box .fa-search{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin: 5px;
+}
+.input-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .navbar, .posts {
+        width: 100%;
+    }
+    .chat-list{
+        display: none;
+    }
+    .navbar{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .navbar .top{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .top .icons .fa{
+        width: 40px;
+        height: 40px;
+    }
+    .top .icons .active,.navbar .top .icons .fa:hover{
+        width: 50px;
+        height: 50px;
+    }
+    .navbar .icons .fa-cog{
+        display: none;
+    }
+}
+.container header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: #f0f0f0;
+}
+.posts .post{
+    width: 380px;
+    max-width: 390px;
+    height: 410px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    color: black;
+}
+.post .post-img{
+    width: 99%;
+    height: 280px;
+    object-fit: cover;
+}
+.post-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.post header{
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    justify-content: start;
+    color: black;
+}
+.post p,.post h3{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.post h3{
+    font-size: smaller;
+    padding: 5px 0;
+}
+.post h3 img{
+    width: 35px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.post .action{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+    margin-top: 4px;
+}
+.action .fa{
+    width: 40px;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.action .fa em{
+    font-size: smaller;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.icons img{
+    width: 50px;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+.settins-container{
+    width: 300px;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: start;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    margin: 2px 8px;
+}
+.settins-container.active {
+  display: block;
+  opacity: 1;
+}
+.fa-close{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+.settins-container .span{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    height: 48px;
+    border-radius: 8px;
+    margin: 4px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+.fa-users{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: #333 1px solid;
+    margin: 3px;
+    border-radius: 50%;
+}
+/*----settings cont---*/
+ .setting {
+      margin-bottom: 20px;
+    }
+    .setting label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      border-radius: 20px;
+      transition: 0.4s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+    input:checked + .slider {
+      background-color: orangered;
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+#language,#theme{
+    background: rgba(255,255,255,.8);
+    box-shadow:0 0 5px rgba(0,0,0,0.2);
+    height: 35px;
+    width: 99px;
+    border-radius: 4px;
+    border: none;
+}
+.p-set {
+      max-width: 96%;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+      margin: 4px;
+    }
+    .chat-list ul{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    .friend{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        width: 100%;
+        height: 45px;
+        margin: 4px 1px;
+        box-shadow: 0 0 3px rgba(0,0,0,0.1);
+        position: relative;
+    }
+    .friend img{
+        width: 35px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 4px;
+    }
+    .logo-land{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        font-size: smaller;
+    }
+    .logo-land img{
+        width: 100%;
+        height: 110px;
+        object-fit: contain;
+    }
+    .chat-list ul li b{
+        font-size: small;
+    }
+    .note{
+        position: absolute;
+        right: 6px;
+        bottom: 10px;
+        top: 10px;
+        background: rgba(214, 82, 33, 0.692);
+        color: #f0f0f0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: smaller;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+            .chat-container {
+            display: none;
+            text-align: left;
+            height: 99%;
+            width: 300PX;
+            margin: 5px;
+            box-shadow:  0 0 3px rgba(0,0,0,0.2);
+        }
+        
+        .messages {
+            height: 84%;
+            width: 99%;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: left;
+            flex-direction: column;
+            background-image: url("c-bg.jpg");
+        }
+        
+        .chat-container input {
+            width: auto;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 30px;
+            flex: 1;
+            border: 1px solid #333;
+        }
+        
+        .chat-container button {
+            width: 43px;
+            height: 43px;
+            border-radius: 50%;
+            background: rgba(214, 82, 33, 0.692);
+            padding: 10px;
+            margin: 3px;
+            border: none;
+        }
+        
+        .messages span {
+            width: 65%;
+            padding: 8px 5px;
+            border-radius: 8px 8px 8px 0;
+            background: #333;
+            margin: 8px 2px;
+            color: aliceblue;
+            font-family: monospace;
+        }
+        #chatTitle{
+            width: 100%;
+            height: 45px;
+            font-family: monospace;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <nav class="navbar">
+               <div class="top">
+                <a href="#" class="icons"><img src="Screenshot__1_-removebg-preview.png" alt=""></i></a>
+                <a href="#" class="icons"><i class="fa-home fa active"></i></a>
+               <a href="#" class="icons"><i class="fa-compass fa"></i></a>
+               <a href="#" class="icons"><i class="fa-comment fa"></i></a>
+               <a href="#" class="icons"><i class="fa-plus fa"></i></a>
+               <a href="#" class="icons"><i class="fa-user-circle fa"></i></a>
+               </div>
+               <a href="#" class="icons"><i class="fa-cog fa" onclick="showContainer('container1')"></i></a>
+        </nav>
+        
+        <aside class="chat-list">
+            <div class="logo-land">
+                <img src="Screenshot__1_-removebg-preview.png" alt="">
+                <i>Chat with B.hub bot</i>
+            </div>
+            <div class="input-box">
+                <input type="search" name="sch" id="">
+                <i class="fa-search fa"></i>
+            </div>
+            <div class="friends-container" id="friendsList">
+            <!-- Friends will be added dynamically -->
+        </div>
+        </aside>
+        
+        <main class="posts">
+            <div class="post">
+                <header>
+                    <h3><img src="prof2.jpg" alt="">User Name</h3>
+                <p>This is a sample post.</p>
+                </header>
+                <div class="post-img">
+                    <img src="prof.jpg" alt="">
+                </div>
+                <div class="action">
+                    <i class="fa-heart fa"><em>100</em></i>
+                    <i class="fa-comment fa"></i>
+                    <i class="fa-bookmark fa"></i>
+                    <i class="fa-bar-chart fa"></i>
+                </div>
+            </div>
+            <div class="post">
+                <h3>User Name</h3>
+                <p>Another interesting post here!</p>
+            </div>
+        </main>
+        <div class="settins-container" id="container1">
+            <i class="fa-close fa"></i>
+            <h2>Settins</h2>
+            <span class="span">
+                <i class="fa-users fa"></i>
+                <b>Accounts</b>
+            </span>
+             
+
+  <!-- Volume Slider -->
+   <div class="p-set">
+         <div class="setting">
+         <label for="darkMode">Dark Mode</label>
+         <label class="switch">
+           <input type="checkbox" id="darkMode">
+           <span class="slider"></span>
+         </label>
+         </div>
+        <div class="setting">
+          <label for="volume">Volume</label>
+          <input type="range" id="volume" name="volume" min="0" max="100">
+        </div>
+    
+        <!-- Language Selection -->
+        <div class="setting">
+          <label for="language">Language</label>
+          <select id="language" name="language">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+            <option value="zh">中文</option>
+          </select>
+        </div>
+    
+        <!-- Notifications Toggle -->
+        <div class="setting">
+          <label for="notifications">Enable Notifications</label>
+          <label class="switch">
+            <input type="checkbox" id="notifications">
+            <span class="slider"></span>
+          </label>
+        </div>
+    
+        <!-- Theme Dropdown -->
+        <div class="setting">
+          <label for="theme">Theme</label>
+          <select id="theme" name="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="system">System Default</option>
+          </select>
+        </div>
+    </div>
+</div>
+    <div class="chat-container" id="chatBox">
+            <h3 id="chatTitle"></h3>
+            <div class="messages" id="messages"></div>
+            <div class="input-box">
+                <input type="text" id="messageInput" placeholder="Type a message...">
+            <button onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+            <button onclick="sendMessage()"><i class="fa-solid fa-microphone"></i></button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <script>
+        function showContainer(id) {
+  const containers = document.querySelectorAll('.settins-container');
+  containers.forEach(container => {
+    if (container.id === id) {
+      container.classList.add('active');
+    } else {
+      container.classList.remove('active');
+    }
+  });
+}
+
+ const friends = [{
+            name: "Alice Johnson",
+            profilePic: "prof2.jpg"
+        }, {
+            name: "Bob Smith",
+            profilePic: "prof.jpg"
+        }, {
+            name: "Charlie Brown",
+            profilePic: "www.jpg"
+        }];
+         const friendsList = document.getElementById("friendsList");
+        const chatBox = document.getElementById("chatBox");
+        const chatTitle = document.getElementById("chatTitle");
+        const messages = document.getElementById("messages");
+
+        friends.forEach(friend => {
+            const friendDiv = document.createElement("div");
+            friendDiv.className = "friend";
+            friendDiv.onclick = () => openChat(friend.name);
+
+            const img = document.createElement("img");
+            img.src = friend.profilePic;
+
+            const name = document.createElement("div");
+            name.className = "friend-name";
+            name.textContent = friend.name;
+
+            friendDiv.appendChild(img);
+            friendDiv.appendChild(name);
+            friendsList.appendChild(friendDiv);
+        });
+
+        function openChat(friendName) {
+            chatBox.style.display = "block";
+            chatTitle.textContent = `Chat with ${friendName}`;
+            messages.innerHTML = "";
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById("messageInput");
+            if (messageInput.value.trim() !== "") {
+                const messageDiv = document.createElement("span");
+                messageDiv.textContent = messageInput.value;
+                messages.appendChild(messageDiv);
+                messageInput.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
